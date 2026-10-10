@@ -1,0 +1,2796 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>SPARDA | IEEE Student Technical Community</title>
+  <meta name="description" content="SPARDA is a technical event organized by the IEEE Student Technical Community. Explore events, view the schedule, and register.">
+  <meta name="theme-color" content="#ffffff">
+  <link rel="icon" href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA2NCA2NCI+CiAgPHJlY3Qgd2lkdGg9IjY0IiBoZWlnaHQ9IjY0IiByeD0iMTIiIGZpbGw9IiMwMDYyOWIiLz4KICA8cmVjdCB4PSIyMiIgeT0iMjIiIHdpZHRoPSIyMCIgaGVpZ2h0PSIyMCIgcng9IjMiIGZpbGw9IiNmZmZmZmYiLz4KICA8cGF0aCBkPSJNMjcgMjJ2LThNMzIgMjJ2LThNMzcgMjJ2LThNMjcgNDJ2OE0zMiA0MnY4TTM3IDQydjhNMjIgMjdoLThNMjIgMzJoLThNMjIgMzdoLThNNDIgMjdoOE00MiAzMmg4TTQyIDM3aDgiIHN0cm9rZT0iI2ZmZmZmZiIgc3Ryb2tlLXdpZHRoPSIzIiBzdHJva2UtbGluZWNhcD0icm91bmQiIGZpbGw9Im5vbmUiLz4KPC9zdmc+Cg==" type="image/svg+xml">
+  <style>
+/* ==========================================================================
+   SPARDA website styles
+   Mobile-first. Breakpoints: 40em (640px), 60em (960px).
+   ========================================================================== */
+
+/* ---------- Design tokens ---------- */
+:root {
+  --ink: #0b1b3a;
+  --ink-soft: #42526e;
+  --blue: #00629b;
+  --blue-deep: #004a75;
+  --blue-bright: #1a86c8;
+  --tint: #e8f2f9;
+  --mist: #f4f7fa;
+  --line: #d5dee9;
+  --input-line: #7a8ca6;
+
+  --warn-bg: #fff6dd;
+  --warn-line: #e9cf84;
+  --warn-ink: #5f4300;
+  --ok-bg: #e8f6ee;
+  --ok-line: #9bd2b0;
+  --ok-ink: #0f5132;
+  --err: #b42318;
+  --err-bg: #fdecea;
+  --err-line: #f3b7b1;
+
+  --radius-sm: 6px;
+  --radius-md: 10px;
+  --radius-lg: 16px;
+  --shadow-sm: 0 1px 2px rgba(11, 27, 58, 0.06);
+  --shadow-md: 0 10px 28px -14px rgba(11, 27, 58, 0.3);
+
+  --header-h: 4rem;
+  --container: 72rem;
+  --gutter: clamp(1rem, 4vw, 2rem);
+
+  --font: "Segoe UI", system-ui, -apple-system, "Helvetica Neue", Roboto, Arial, sans-serif;
+}
+
+/* ---------- Base ---------- */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+[hidden] {
+  display: none !important;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+  scroll-padding-top: calc(var(--header-h) + 1rem);
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  html {
+    scroll-behavior: smooth;
+  }
+}
+
+html.no-scroll {
+  overflow: hidden;
+}
+
+body {
+  margin: 0;
+  font-family: var(--font);
+  font-size: 1rem;
+  line-height: 1.6;
+  color: var(--ink);
+  background: #fff;
+  overflow-x: clip;
+}
+
+img,
+svg {
+  max-width: 100%;
+}
+
+h1,
+h2,
+h3,
+p,
+ul,
+ol,
+dl,
+dd {
+  overflow-wrap: break-word;
+}
+
+a {
+  color: var(--blue);
+  text-underline-offset: 0.18em;
+}
+
+a:hover {
+  color: var(--blue-deep);
+}
+
+:focus-visible {
+  outline: 3px solid var(--blue-bright);
+  outline-offset: 2px;
+}
+
+.visually-hidden {
+  position: absolute !important;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.skip-link {
+  position: absolute;
+  left: 0.75rem;
+  top: -4rem;
+  z-index: 200;
+  padding: 0.6rem 1rem;
+  background: var(--ink);
+  color: #fff;
+  border-radius: var(--radius-md);
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.skip-link:focus {
+  top: 0.75rem;
+}
+
+.container {
+  width: 100%;
+  max-width: var(--container);
+  margin-inline: auto;
+  padding-inline: var(--gutter);
+}
+
+/* ---------- Buttons ---------- */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  min-height: 2.75rem;
+  padding: 0.65rem 1.25rem;
+  border: 1.5px solid transparent;
+  border-radius: var(--radius-md);
+  font: inherit;
+  font-size: 0.95rem;
+  font-weight: 700;
+  line-height: 1.2;
+  text-align: center;
+  text-decoration: none;
+  cursor: pointer;
+  transition: background-color 0.15s ease, border-color 0.15s ease, color 0.15s ease;
+}
+
+.btn-primary {
+  background: var(--blue);
+  color: #fff;
+}
+
+.btn-primary:hover {
+  background: var(--blue-deep);
+  color: #fff;
+}
+
+.btn-secondary {
+  background: #fff;
+  color: var(--blue);
+  border-color: var(--blue);
+}
+
+.btn-secondary:hover {
+  background: var(--tint);
+  color: var(--blue-deep);
+}
+
+.btn-ghost {
+  background: #fff;
+  color: var(--ink);
+  border-color: var(--input-line);
+}
+
+.btn-ghost:hover {
+  background: var(--mist);
+  color: var(--ink);
+}
+
+.btn-block {
+  width: 100%;
+}
+
+.btn:disabled,
+.btn[aria-busy="true"] {
+  opacity: 0.75;
+  cursor: not-allowed;
+}
+
+.btn[aria-busy="true"]::after {
+  content: "";
+  width: 1em;
+  height: 1em;
+  border: 2px solid currentColor;
+  border-right-color: transparent;
+  border-radius: 50%;
+  animation: spin 0.7s linear infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* ---------- Header and navigation ---------- */
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  background: #fff;
+  border-bottom: 1px solid var(--line);
+}
+
+.header-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  min-height: var(--header-h);
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+  min-width: 0;
+  color: var(--ink);
+  text-decoration: none;
+}
+
+.brand:hover {
+  color: var(--ink);
+}
+
+.brand-mark {
+  flex: none;
+  width: 2rem;
+  height: 2rem;
+  color: var(--blue);
+}
+
+.brand-text {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  line-height: 1.15;
+}
+
+.brand-name {
+  font-size: 1.2rem;
+  font-weight: 800;
+  letter-spacing: 0.04em;
+}
+
+.brand-sub {
+  font-size: 0.7rem;
+  color: var(--ink-soft);
+}
+
+.nav-toggle {
+  display: inline-flex;
+  flex: none;
+  align-items: center;
+  justify-content: center;
+  width: 2.75rem;
+  height: 2.75rem;
+  border: 1px solid var(--input-line);
+  border-radius: var(--radius-md);
+  background: #fff;
+  color: var(--ink);
+  cursor: pointer;
+}
+
+.nav-toggle-bars,
+.nav-toggle-bars::before,
+.nav-toggle-bars::after {
+  display: block;
+  width: 1.25rem;
+  height: 2px;
+  border-radius: 2px;
+  background: currentColor;
+  transition: transform 0.2s ease;
+}
+
+.nav-toggle-bars {
+  position: relative;
+}
+
+.nav-toggle-bars::before,
+.nav-toggle-bars::after {
+  content: "";
+  position: absolute;
+  left: 0;
+}
+
+.nav-toggle-bars::before {
+  top: -6px;
+}
+
+.nav-toggle-bars::after {
+  top: 6px;
+}
+
+.nav-toggle[aria-expanded="true"] .nav-toggle-bars {
+  background: transparent;
+}
+
+.nav-toggle[aria-expanded="true"] .nav-toggle-bars::before {
+  transform: translateY(6px) rotate(45deg);
+}
+
+.nav-toggle[aria-expanded="true"] .nav-toggle-bars::after {
+  transform: translateY(-6px) rotate(-45deg);
+}
+
+/* Mobile menu: a panel under the header */
+.site-nav {
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  max-height: calc(100vh - var(--header-h));
+  max-height: calc(100dvh - var(--header-h));
+  overflow-y: auto;
+  background: #fff;
+  border-bottom: 1px solid var(--line);
+  box-shadow: var(--shadow-md);
+}
+
+.site-nav.is-open {
+  display: block;
+}
+
+.nav-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  margin: 0;
+  padding: 0.5rem var(--gutter) 1.25rem;
+  list-style: none;
+}
+
+.nav-link {
+  display: flex;
+  align-items: center;
+  min-height: 2.75rem;
+  padding: 0.5rem 0.75rem;
+  border-radius: var(--radius-md);
+  color: var(--ink);
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.nav-link:hover {
+  background: var(--mist);
+  color: var(--ink);
+}
+
+.nav-link[aria-current] {
+  background: var(--tint);
+  color: var(--blue-deep);
+}
+
+.nav-cta {
+  margin-top: 0.5rem;
+}
+
+@media (min-width: 60em) {
+  .nav-toggle {
+    display: none;
+  }
+
+  .site-nav {
+    display: block;
+    position: static;
+    max-height: none;
+    overflow: visible;
+    background: none;
+    border: 0;
+    box-shadow: none;
+  }
+
+  .nav-list {
+    flex-direction: row;
+    align-items: center;
+    gap: 0.25rem;
+    padding: 0;
+  }
+
+  .nav-link {
+    min-height: 2.5rem;
+    padding: 0.4rem 0.7rem;
+    font-size: 0.95rem;
+  }
+
+  .nav-cta {
+    margin: 0 0 0 0.5rem;
+  }
+}
+
+/* ---------- Hero ---------- */
+.hero {
+  position: relative;
+  overflow: hidden;
+  padding: clamp(2.5rem, 7vw, 5rem) 0 clamp(2.5rem, 6vw, 4.5rem);
+  background: #fff;
+}
+
+.hero::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(var(--line) 1px, transparent 1px),
+    linear-gradient(90deg, var(--line) 1px, transparent 1px);
+  background-size: 40px 40px;
+  opacity: 0.55;
+  -webkit-mask-image: linear-gradient(to bottom, #000 0%, transparent 90%);
+  mask-image: linear-gradient(to bottom, #000 0%, transparent 90%);
+  pointer-events: none;
+}
+
+.hero-inner {
+  position: relative;
+  display: grid;
+  gap: 2.5rem;
+  align-items: center;
+}
+
+.hero-title {
+  margin: 0;
+  font-size: clamp(3.25rem, 13vw, 6rem);
+  font-weight: 800;
+  line-height: 0.95;
+  letter-spacing: -0.03em;
+}
+
+.hero-title::after {
+  content: "";
+  display: block;
+  width: 4.5rem;
+  height: 2px;
+  margin-top: 1rem;
+  background: var(--blue);
+}
+
+.hero-tagline {
+  margin: 1.1rem 0 0;
+  font-size: clamp(1.25rem, 3.2vw, 1.75rem);
+  font-weight: 600;
+  line-height: 1.25;
+  color: var(--blue);
+}
+
+.hero-intro {
+  max-width: 34rem;
+  margin: 1rem 0 0;
+  font-size: 1.0625rem;
+  color: var(--ink-soft);
+}
+
+.hero-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  margin-top: 1.75rem;
+}
+
+.hero-facts {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(10rem, 1fr));
+  gap: 0.75rem;
+  max-width: 38rem;
+  margin: 2rem 0 0;
+  padding: 0;
+}
+
+.fact {
+  padding: 0.7rem 0.9rem;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-md);
+  background: #fff;
+}
+
+.fact dt {
+  font-size: 0.8rem;
+  color: var(--ink-soft);
+}
+
+.fact dd {
+  margin: 0.1rem 0 0;
+  font-size: 0.95rem;
+  font-weight: 700;
+}
+
+.fact.is-placeholder {
+  border-style: dashed;
+}
+
+.fact.is-placeholder dd {
+  font-style: italic;
+  font-weight: 600;
+  color: var(--ink-soft);
+}
+
+.hero-art {
+  width: 100%;
+  max-width: 30rem;
+  margin-inline: auto;
+  padding: 1rem;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-lg);
+  background: #fff;
+  box-shadow: var(--shadow-md);
+}
+
+.circuit {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.circuit .chip {
+  fill: var(--tint);
+  stroke: var(--blue);
+  stroke-width: 2;
+}
+
+.circuit .chip-core {
+  fill: #fff;
+  stroke: var(--blue);
+  stroke-width: 1.5;
+}
+
+.circuit .chip-text {
+  fill: var(--blue);
+  font-family: var(--font);
+  font-size: 18px;
+  font-weight: 700;
+}
+
+.circuit .pin {
+  stroke: var(--blue);
+  stroke-width: 2;
+  stroke-linecap: round;
+}
+
+.circuit .traces path {
+  stroke: var(--blue);
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-dasharray: 1;
+  animation: trace-draw 1.4s ease-out both;
+}
+
+.circuit .traces path:nth-child(even) {
+  stroke: var(--blue-bright);
+  stroke-width: 1.75;
+}
+
+.circuit .traces path:nth-child(2) { animation-delay: 0.08s; }
+.circuit .traces path:nth-child(3) { animation-delay: 0.16s; }
+.circuit .traces path:nth-child(4) { animation-delay: 0.24s; }
+.circuit .traces path:nth-child(5) { animation-delay: 0.32s; }
+.circuit .traces path:nth-child(6) { animation-delay: 0.4s; }
+.circuit .traces path:nth-child(7) { animation-delay: 0.48s; }
+.circuit .traces path:nth-child(8) { animation-delay: 0.56s; }
+.circuit .traces path:nth-child(9) { animation-delay: 0.64s; }
+.circuit .traces path:nth-child(10) { animation-delay: 0.72s; }
+
+.circuit .pads circle {
+  fill: #fff;
+  stroke: var(--blue);
+  stroke-width: 2;
+  animation: pad-in 0.4s ease-out 1.1s both;
+}
+
+.circuit .pads .pad-solid {
+  fill: var(--blue);
+}
+
+.circuit .deco {
+  stroke: var(--blue-bright);
+  stroke-width: 1.5;
+  opacity: 0.5;
+}
+
+@keyframes trace-draw {
+  from {
+    stroke-dashoffset: 1;
+  }
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+@keyframes pad-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@media (min-width: 60em) {
+  .hero-inner {
+    grid-template-columns: minmax(0, 1.1fr) minmax(0, 0.9fr);
+    gap: 3rem;
+  }
+
+  .hero-art {
+    margin-inline: 0 0;
+    justify-self: end;
+  }
+}
+
+/* ---------- Sections ---------- */
+.section {
+  padding: clamp(3rem, 7vw, 5.5rem) 0;
+}
+
+.section--mist {
+  background: var(--mist);
+  border-top: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+}
+
+.section-head {
+  max-width: 40rem;
+  margin-bottom: 2rem;
+}
+
+.section-title {
+  margin: 0;
+  font-size: clamp(1.75rem, 4.5vw, 2.5rem);
+  font-weight: 800;
+  line-height: 1.15;
+  letter-spacing: -0.02em;
+}
+
+.section-lead {
+  max-width: 60ch;
+  margin: 0.9rem 0 0;
+  color: var(--ink-soft);
+}
+
+.split {
+  display: grid;
+  gap: 2rem;
+}
+
+.split > * {
+  min-width: 0;
+}
+
+@media (min-width: 60em) {
+  .split {
+    grid-template-columns: minmax(0, 0.85fr) minmax(0, 1.15fr);
+    gap: 4rem;
+    align-items: start;
+  }
+
+  .split--sticky .split-head {
+    position: sticky;
+    top: calc(var(--header-h) + 1.5rem);
+  }
+}
+
+.notice {
+  margin: 1.25rem 0 0;
+  padding: 0.75rem 1rem;
+  border: 1px solid var(--warn-line);
+  border-radius: var(--radius-md);
+  background: var(--warn-bg);
+  color: var(--warn-ink);
+  font-size: 0.9rem;
+}
+
+.events-notice-spacing,
+#events-notice {
+  margin: 0 0 1.5rem;
+}
+
+.plain-list {
+  margin: 1.25rem 0 0;
+  padding-left: 1.2rem;
+  color: var(--ink-soft);
+}
+
+.plain-list li + li {
+  margin-top: 0.35rem;
+}
+
+.tag {
+  display: inline-block;
+  padding: 0.15rem 0.65rem;
+  border-radius: 999px;
+  background: var(--tint);
+  color: var(--blue-deep);
+  font-size: 0.78rem;
+  font-weight: 600;
+  line-height: 1.5;
+}
+
+.tag--sample {
+  border: 1px solid var(--warn-line);
+  background: var(--warn-bg);
+  color: var(--warn-ink);
+}
+
+/* ---------- About ---------- */
+.pillars {
+  display: grid;
+  gap: 0;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.pillar {
+  padding: 1.25rem 0 1.25rem 1.25rem;
+  border-left: 3px solid var(--blue);
+}
+
+.pillar + .pillar {
+  margin-top: 0.25rem;
+}
+
+.pillar h3 {
+  margin: 0;
+  font-size: 1.15rem;
+}
+
+.pillar p {
+  margin: 0.35rem 0 0;
+  color: var(--ink-soft);
+}
+
+@media (min-width: 40em) {
+  .pillars {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    column-gap: 2rem;
+  }
+}
+
+/* ---------- Events ---------- */
+.event-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 19rem), 1fr));
+  gap: 1.25rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.event-card {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  overflow: hidden;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-lg);
+  background: #fff;
+  box-shadow: var(--shadow-sm);
+  transition: box-shadow 0.2s ease, border-color 0.2s ease;
+}
+
+.event-card:hover {
+  border-color: #b4c4d8;
+  box-shadow: var(--shadow-md);
+}
+
+.event-visual {
+  height: 8.5rem;
+  border-bottom: 1px solid var(--line);
+  background-color: var(--tint);
+  background-image:
+    linear-gradient(rgba(0, 98, 155, 0.09) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0, 98, 155, 0.09) 1px, transparent 1px);
+  background-size: 20px 20px;
+  color: var(--blue);
+}
+
+.event-visual svg {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.event-body {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  gap: 0.75rem;
+  padding: 1.25rem 1.25rem 1rem;
+}
+
+.event-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+}
+
+.event-title {
+  margin: 0;
+  font-size: 1.2rem;
+  line-height: 1.25;
+}
+
+.event-summary {
+  margin: 0;
+  color: var(--ink-soft);
+}
+
+.event-meta {
+  display: grid;
+  gap: 0.35rem;
+  margin: 0;
+  font-size: 0.9rem;
+}
+
+.event-meta > div {
+  display: grid;
+  grid-template-columns: 6.25rem minmax(0, 1fr);
+  gap: 0.5rem;
+}
+
+.event-meta dt {
+  color: var(--ink-soft);
+}
+
+.event-meta dd {
+  margin: 0;
+  font-weight: 600;
+}
+
+.event-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+  padding: 0 1.25rem 1.25rem;
+}
+
+.event-actions .btn {
+  flex: 1 1 8rem;
+}
+
+.event-empty {
+  grid-column: 1 / -1;
+  color: var(--ink-soft);
+}
+
+/* ---------- Registration form ---------- */
+.form-card {
+  min-width: 0;
+  padding: clamp(1.25rem, 4vw, 2rem);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-lg);
+  background: #fff;
+  box-shadow: var(--shadow-sm);
+}
+
+.form-title {
+  margin: 0;
+  font-size: 1.3rem;
+}
+
+.form-title:focus {
+  outline: none;
+}
+
+.form-help {
+  margin: 0.35rem 0 1.25rem;
+  font-size: 0.9rem;
+  color: var(--ink-soft);
+}
+
+.req {
+  color: var(--err);
+}
+
+.form-grid {
+  display: grid;
+  gap: 1.1rem 1.25rem;
+  margin-bottom: 1.5rem;
+}
+
+@media (min-width: 40em) {
+  .form-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .field--full {
+    grid-column: 1 / -1;
+  }
+}
+
+.field {
+  min-width: 0;
+  scroll-margin-top: calc(var(--header-h) + 1rem);
+}
+
+.field label {
+  display: block;
+  margin-bottom: 0.35rem;
+  font-size: 0.95rem;
+  font-weight: 600;
+}
+
+.input {
+  display: block;
+  width: 100%;
+  min-height: 2.75rem;
+  padding: 0.6rem 0.8rem;
+  border: 1.5px solid var(--input-line);
+  border-radius: var(--radius-sm);
+  background: #fff;
+  color: var(--ink);
+  font: inherit;
+  font-size: 1rem; /* 16px prevents iOS zoom on focus */
+  transition: border-color 0.15s ease, box-shadow 0.15s ease;
+}
+
+.input:hover {
+  border-color: var(--ink-soft);
+}
+
+.input:focus-visible {
+  border-color: var(--blue);
+  outline: 3px solid var(--blue-bright);
+  outline-offset: 1px;
+}
+
+.input[aria-invalid="true"] {
+  border-color: var(--err);
+  background: #fffafa;
+}
+
+.field-hint {
+  margin: 0.35rem 0 0;
+  font-size: 0.85rem;
+  color: var(--ink-soft);
+}
+
+.field-hint:empty {
+  display: none;
+}
+
+.field-error {
+  margin: 0.35rem 0 0;
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--err);
+}
+
+.field-error:empty {
+  display: none;
+}
+
+.status {
+  margin-top: 1rem;
+  padding: 0.85rem 1rem;
+  border: 1px solid;
+  border-radius: var(--radius-md);
+  font-size: 0.95rem;
+}
+
+.status--success {
+  border-color: var(--ok-line);
+  background: var(--ok-bg);
+  color: var(--ok-ink);
+}
+
+.status--demo {
+  border-color: var(--warn-line);
+  background: var(--warn-bg);
+  color: var(--warn-ink);
+}
+
+.status--error {
+  border-color: var(--err-line);
+  background: var(--err-bg);
+  color: var(--err);
+}
+
+/* ---------- Schedule ---------- */
+.timeline {
+  position: relative;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.timeline::before {
+  content: "";
+  position: absolute;
+  top: 0.6rem;
+  bottom: 0.6rem;
+  left: 0.4rem;
+  width: 2px;
+  background: var(--line);
+}
+
+.timeline-item {
+  position: relative;
+  padding: 0 0 1.75rem 2rem;
+}
+
+.timeline-item:last-child {
+  padding-bottom: 0;
+}
+
+.timeline-item::before {
+  content: "";
+  position: absolute;
+  top: 0.35rem;
+  left: 0;
+  width: 0.9rem;
+  height: 0.9rem;
+  border: 2px solid var(--blue);
+  border-radius: 50%;
+  background: #fff;
+}
+
+.timeline-time {
+  margin: 0;
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--blue-deep);
+}
+
+.timeline-title {
+  margin: 0.15rem 0 0;
+  font-size: 1.15rem;
+}
+
+.timeline-text {
+  margin: 0.3rem 0 0;
+  color: var(--ink-soft);
+}
+
+.timeline-item .tag {
+  margin-top: 0.5rem;
+}
+
+/* ---------- FAQ ---------- */
+.faq-list {
+  border-top: 1px solid var(--line);
+}
+
+.faq-item {
+  border-bottom: 1px solid var(--line);
+}
+
+.faq-heading {
+  margin: 0;
+  font-size: 1rem;
+}
+
+.faq-trigger {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  width: 100%;
+  min-height: 3.25rem;
+  padding: 0.9rem 0.25rem;
+  border: 0;
+  background: none;
+  color: var(--ink);
+  font: inherit;
+  font-size: 1.05rem;
+  font-weight: 700;
+  text-align: left;
+  cursor: pointer;
+}
+
+.faq-trigger:hover {
+  color: var(--blue);
+}
+
+.faq-icon {
+  position: relative;
+  flex: none;
+  width: 1rem;
+  height: 1rem;
+}
+
+.faq-icon::before,
+.faq-icon::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  margin-top: -1px;
+  border-radius: 2px;
+  background: var(--blue);
+  transition: transform 0.2s ease;
+}
+
+.faq-icon::after {
+  transform: rotate(90deg);
+}
+
+.faq-trigger[aria-expanded="true"] .faq-icon::after {
+  transform: rotate(0deg);
+}
+
+.faq-panel {
+  display: grid;
+  grid-template-rows: 0fr;
+  visibility: hidden;
+  transition: grid-template-rows 0.25s ease, visibility 0s linear 0.25s;
+}
+
+.faq-panel.is-open {
+  grid-template-rows: 1fr;
+  visibility: visible;
+  transition: grid-template-rows 0.25s ease, visibility 0s;
+}
+
+.faq-panel-inner {
+  min-height: 0;
+  overflow: hidden;
+}
+
+.faq-panel-inner p {
+  max-width: 60ch;
+  margin: 0;
+  padding: 0 0.25rem 1.1rem;
+  color: var(--ink-soft);
+}
+
+/* ---------- Contact ---------- */
+.contact-card {
+  padding: clamp(1.25rem, 4vw, 1.75rem);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-lg);
+  background: #fff;
+  box-shadow: var(--shadow-sm);
+}
+
+.contact-list {
+  display: grid;
+  gap: 1.25rem;
+  margin: 0;
+}
+
+.contact-list dt {
+  font-size: 0.85rem;
+  color: var(--ink-soft);
+}
+
+.contact-list dd {
+  margin: 0.15rem 0 0;
+  font-weight: 600;
+}
+
+.contact-list ul {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem 1.25rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+#contact-email.is-placeholder,
+#contact-social.is-placeholder {
+  font-style: italic;
+  color: var(--ink-soft);
+}
+
+/* ---------- Footer ---------- */
+.site-footer {
+  padding: 2.5rem 0 1.75rem;
+  border-top: 1px solid var(--line);
+  background: var(--mist);
+}
+
+.footer-inner {
+  display: grid;
+  gap: 1.5rem;
+}
+
+.footer-name {
+  margin: 0;
+  font-size: 1.25rem;
+  font-weight: 800;
+  letter-spacing: 0.04em;
+}
+
+.footer-sub {
+  margin: 0.2rem 0 0;
+  font-size: 0.9rem;
+  color: var(--ink-soft);
+}
+
+.footer-nav ul {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.25rem 1.25rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.footer-nav a {
+  display: inline-flex;
+  align-items: center;
+  min-height: 2.5rem;
+  color: var(--ink);
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.footer-nav a:hover {
+  color: var(--blue);
+  text-decoration: underline;
+}
+
+.footer-copy {
+  margin: 0;
+  padding-top: 1.25rem;
+  border-top: 1px solid var(--line);
+  font-size: 0.85rem;
+  color: var(--ink-soft);
+}
+
+@media (min-width: 60em) {
+  .footer-inner {
+    grid-template-columns: 1fr auto;
+    align-items: start;
+  }
+
+  .footer-copy {
+    grid-column: 1 / -1;
+  }
+}
+
+/* ---------- Event details dialog ---------- */
+.modal {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+  background: rgba(11, 27, 58, 0.55);
+}
+
+.modal-panel {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  max-width: 40rem;
+  max-height: calc(100vh - 2rem);
+  max-height: calc(100dvh - 2rem);
+  overflow: hidden;
+  border-radius: var(--radius-lg);
+  background: #fff;
+  box-shadow: 0 24px 60px -20px rgba(11, 27, 58, 0.5);
+  animation: modal-in 0.18s ease-out;
+}
+
+.modal-panel:focus {
+  outline: none;
+}
+
+@keyframes modal-in {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+.modal-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 1.25rem 1.25rem 0.75rem;
+}
+
+.modal-heading {
+  min-width: 0;
+}
+
+.modal-category {
+  margin: 0;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--blue);
+}
+
+.modal-title {
+  margin: 0.1rem 0 0;
+  font-size: clamp(1.3rem, 4vw, 1.6rem);
+  line-height: 1.2;
+}
+
+.modal-close {
+  display: inline-flex;
+  flex: none;
+  align-items: center;
+  justify-content: center;
+  width: 2.75rem;
+  height: 2.75rem;
+  margin: -0.25rem -0.25rem 0 0;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-md);
+  background: #fff;
+  color: var(--ink);
+  cursor: pointer;
+}
+
+.modal-close:hover {
+  background: var(--mist);
+}
+
+.modal-body {
+  flex: 1 1 auto;
+  min-height: 0;
+  padding: 0 1.25rem 1rem;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  -webkit-overflow-scrolling: touch;
+}
+
+.modal-body > .notice {
+  margin: 0 0 1rem;
+}
+
+.modal-description {
+  margin: 0 0 1rem;
+  color: var(--ink-soft);
+}
+
+.detail-list {
+  display: grid;
+  gap: 0.7rem;
+  margin: 0 0 1.25rem;
+  padding: 1rem;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-md);
+  background: var(--mist);
+}
+
+.detail-row dt {
+  font-size: 0.85rem;
+  color: var(--ink-soft);
+}
+
+.detail-row dd {
+  margin: 0;
+  font-weight: 600;
+}
+
+@media (min-width: 30em) {
+  .detail-row {
+    display: grid;
+    grid-template-columns: 8rem minmax(0, 1fr);
+    gap: 0.75rem;
+  }
+
+  .detail-row dt {
+    font-size: 0.9rem;
+  }
+}
+
+.modal-body h3 {
+  margin: 0 0 0.4rem;
+  font-size: 1.05rem;
+}
+
+.rule-list {
+  margin: 0 0 1rem;
+  padding-left: 1.2rem;
+  color: var(--ink-soft);
+}
+
+.rule-list li + li {
+  margin-top: 0.3rem;
+}
+
+.modal-footer {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  gap: 0.6rem;
+  padding: 0.9rem 1.25rem 1.1rem;
+  border-top: 1px solid var(--line);
+  background: #fff;
+}
+
+.modal-footer .btn {
+  flex: 1 1 9rem;
+}
+
+@media (min-width: 30em) {
+  .modal-footer .btn {
+    flex: 0 0 auto;
+  }
+}
+
+/* Short landscape screens: tighten the dialog so content stays reachable */
+@media (max-height: 30em) {
+  .modal {
+    padding: 0.5rem;
+  }
+
+  .modal-panel {
+    max-height: calc(100vh - 1rem);
+    max-height: calc(100dvh - 1rem);
+  }
+
+  .modal-header {
+    padding: 0.75rem 1rem 0.5rem;
+  }
+
+  .modal-body {
+    padding: 0 1rem 0.75rem;
+  }
+
+  .modal-footer {
+    padding: 0.6rem 1rem;
+  }
+}
+
+/* ---------- Very small screens ---------- */
+@media (max-width: 22.5em) {
+  .event-meta > div {
+    grid-template-columns: 1fr;
+    gap: 0;
+  }
+}
+
+/* ---------- Reduced motion ---------- */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-delay: 0s !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    transition-delay: 0s !important;
+    scroll-behavior: auto !important;
+  }
+
+  .btn[aria-busy="true"]::after {
+    animation: none;
+  }
+}
+
+</style>
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to main content</a>
+
+  <!-- ===================== NAVIGATION ===================== -->
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="brand" href="#home" aria-label="SPARDA, IEEE Student Technical Community. Go to home">
+        <!-- Text-based identity. No official IEEE logo is used. -->
+        <svg class="brand-mark" viewBox="0 0 32 32" fill="none" aria-hidden="true" focusable="false">
+          <rect x="1" y="1" width="30" height="30" rx="7" fill="currentColor"/>
+          <rect x="10.5" y="10.5" width="11" height="11" rx="2" fill="#fff"/>
+          <path d="M13 10.5V6M16 10.5V6M19 10.5V6M13 21.5V26M16 21.5V26M19 21.5V26M10.5 13H6M10.5 16H6M10.5 19H6M21.5 13H26M21.5 16H26M21.5 19H26" stroke="#fff" stroke-width="1.6" stroke-linecap="round"/>
+        </svg>
+        <span class="brand-text">
+          <span class="brand-name">SPARDA</span>
+          <span class="brand-sub">IEEE Student Technical Community</span>
+        </span>
+      </a>
+
+      <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav">
+        <span class="visually-hidden">Menu</span>
+        <span class="nav-toggle-bars" aria-hidden="true"></span>
+      </button>
+
+      <nav class="site-nav" id="site-nav" aria-label="Primary">
+        <ul class="nav-list">
+          <li><a class="nav-link" href="#home">Home</a></li>
+          <li><a class="nav-link" href="#about">About</a></li>
+          <li><a class="nav-link" href="#events">Events</a></li>
+          <li><a class="nav-link" href="#schedule">Schedule</a></li>
+          <li><a class="nav-link" href="#faq">FAQ</a></li>
+          <li><a class="nav-link" href="#contact">Contact</a></li>
+          <li><a class="btn btn-primary nav-cta" href="#register">Register Now</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main">
+
+    <!-- ===================== HERO ===================== -->
+    <section class="hero" id="home" aria-labelledby="hero-title">
+      <div class="container hero-inner">
+        <div class="hero-copy">
+          <h1 class="hero-title" id="hero-title">SPARDA</h1>
+          <!-- EDITABLE PLACEHOLDER COPY: not an official slogan. -->
+          <p class="hero-tagline">Think Beyond. Build What’s Next.</p>
+          <p class="hero-intro">
+            SPARDA is a technical event organized by the IEEE Student Technical Community.
+            Explore technology, solve problems, and build practical skills with other students.
+          </p>
+
+          <div class="hero-actions">
+            <a class="btn btn-primary" href="#register">Register Now</a>
+            <a class="btn btn-secondary" href="#events">Explore Events</a>
+          </div>
+
+          <!--
+            PLACEHOLDER VALUES: the real date, venue, and registration status are set in
+            script.js (SPARDA_CONFIG). Until then they read "To be announced".
+          -->
+          <dl class="hero-facts">
+            <div class="fact is-placeholder" data-fact="eventDate">
+              <dt>Date</dt>
+              <dd data-config="eventDate">To be announced</dd>
+            </div>
+            <div class="fact is-placeholder" data-fact="venue">
+              <dt>Venue</dt>
+              <dd data-config="venue">To be announced</dd>
+            </div>
+            <div class="fact is-placeholder" data-fact="registrationStatus">
+              <dt>Registration</dt>
+              <dd data-config="registrationStatus">To be announced</dd>
+            </div>
+          </dl>
+        </div>
+
+        <div class="hero-art" aria-hidden="true">
+          <svg class="circuit" viewBox="0 0 400 360" fill="none" focusable="false">
+            <g class="deco-group">
+              <circle class="deco" cx="340" cy="232" r="14"/>
+              <path class="deco" d="M44 150h12M50 144v12"/>
+              <rect class="deco" x="312" y="312" width="16" height="16" transform="rotate(45 320 320)"/>
+              <path class="deco" d="M20 40h14M27 33v14"/>
+            </g>
+            <g class="traces">
+              <path pathLength="1" d="M138 150H90V90H40"/>
+              <path pathLength="1" d="M138 180H60V250H40"/>
+              <path pathLength="1" d="M138 210H100V300H70"/>
+              <path pathLength="1" d="M262 150H310V80H360"/>
+              <path pathLength="1" d="M262 180H370"/>
+              <path pathLength="1" d="M262 210H300V280H350"/>
+              <path pathLength="1" d="M200 118V60H240V30"/>
+              <path pathLength="1" d="M175 118V90H130V40"/>
+              <path pathLength="1" d="M200 242V320H160"/>
+              <path pathLength="1" d="M225 242V300H260V340"/>
+            </g>
+            <path class="pin" d="M150 150h-12M150 180h-12M150 210h-12M250 150h12M250 180h12M250 210h12M175 130v-12M200 130v-12M225 130v-12M175 230v12M200 230v12M225 230v12"/>
+            <rect class="chip" x="150" y="130" width="100" height="100" rx="10"/>
+            <rect class="chip-core" x="175" y="155" width="50" height="50" rx="6"/>
+            <text class="chip-text" x="200" y="187" text-anchor="middle">&lt;/&gt;</text>
+            <g class="pads">
+              <circle cx="40" cy="90" r="6"/>
+              <circle cx="40" cy="250" r="6"/>
+              <circle class="pad-solid" cx="70" cy="300" r="6"/>
+              <circle class="pad-solid" cx="360" cy="80" r="6"/>
+              <circle cx="370" cy="180" r="6"/>
+              <circle cx="350" cy="280" r="6"/>
+              <circle class="pad-solid" cx="240" cy="30" r="6"/>
+              <circle cx="130" cy="40" r="6"/>
+              <circle cx="160" cy="320" r="6"/>
+              <circle class="pad-solid" cx="260" cy="340" r="6"/>
+            </g>
+          </svg>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== ABOUT ===================== -->
+    <section class="section section--mist" id="about" aria-labelledby="about-title">
+      <div class="container split">
+        <div class="split-head">
+          <h2 class="section-title" id="about-title">About SPARDA</h2>
+          <p class="section-lead">
+            SPARDA is a technical event organized by the IEEE Student Technical Community.
+            It gives students a place to try ideas in technology, work through real problems,
+            and learn by building alongside their peers.
+          </p>
+          <p class="section-lead">
+            Whatever your branch or year, the aim is the same: leave with a clearer idea of what you can build.
+          </p>
+        </div>
+
+        <ul class="pillars">
+          <li class="pillar">
+            <h3>Explore technology</h3>
+            <p>Try tools, ideas, and areas of engineering that go beyond the classroom.</p>
+          </li>
+          <li class="pillar">
+            <h3>Solve problems</h3>
+            <p>Work through challenges that reward clear thinking and careful testing.</p>
+          </li>
+          <li class="pillar">
+            <h3>Build practical skills</h3>
+            <p>Turn what you have learned into something that runs and can be demonstrated.</p>
+          </li>
+          <li class="pillar">
+            <h3>Collaborate</h3>
+            <p>Meet students from other branches and see how others approach the same problem.</p>
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- ===================== EVENTS ===================== -->
+    <section class="section" id="events" aria-labelledby="events-title">
+      <div class="container">
+        <div class="section-head">
+          <h2 class="section-title" id="events-title">Events</h2>
+          <p class="section-lead">Open an event to read its format, eligibility, and rules, then register.</p>
+        </div>
+
+        <p class="notice" id="events-notice" hidden>
+          Placeholder content: the events below are sample data and will be replaced with the official SPARDA list.
+        </p>
+
+        <ul class="event-grid" id="event-grid">
+          <li class="event-empty">
+            <noscript>JavaScript is required to show events and the registration form.</noscript>
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- ===================== REGISTRATION ===================== -->
+    <section class="section section--mist" id="register" aria-labelledby="register-title">
+      <div class="container split">
+        <div class="split-head">
+          <h2 class="section-title" id="register-title">Register for SPARDA</h2>
+          <p class="section-lead">
+            Choose an event, enter your details, and submit the form. Using Register on an
+            event card selects that event for you.
+          </p>
+          <ul class="plain-list">
+            <li>Keep your college name and email address ready.</li>
+            <li>Check the team size and eligibility in each event’s details.</li>
+          </ul>
+          <p class="notice" id="register-mode-note" hidden>
+            Demo mode: this form is not connected to a registration system yet.
+            Nothing you enter is sent or saved.
+          </p>
+        </div>
+
+        <div class="form-card">
+          <h3 class="form-title" id="form-heading" tabindex="-1">Registration form</h3>
+          <p class="form-help">Fields marked <span class="req" aria-hidden="true">*</span><span class="visually-hidden">with an asterisk</span> are required.</p>
+
+          <form id="registration-form" novalidate aria-labelledby="form-heading">
+            <div class="form-grid">
+
+              <div class="field field--full" data-field="fullName">
+                <label for="fullName">Full name <span class="req" aria-hidden="true">*</span></label>
+                <input class="input" id="fullName" name="fullName" type="text" autocomplete="name" maxlength="80" required aria-describedby="fullName-error">
+                <p class="field-error" id="fullName-error"></p>
+              </div>
+
+              <div class="field field--full" data-field="college">
+                <label for="college">College or institution <span class="req" aria-hidden="true">*</span></label>
+                <input class="input" id="college" name="college" type="text" autocomplete="organization" maxlength="120" required aria-describedby="college-error">
+                <p class="field-error" id="college-error"></p>
+              </div>
+
+              <div class="field" data-field="email">
+                <label for="email">Email address <span class="req" aria-hidden="true">*</span></label>
+                <input class="input" id="email" name="email" type="email" inputmode="email" autocomplete="email" autocapitalize="none" spellcheck="false" maxlength="120" required aria-describedby="email-error">
+                <p class="field-error" id="email-error"></p>
+              </div>
+
+              <div class="field" data-field="phone">
+                <label for="phone">Phone number <span class="req" aria-hidden="true">*</span></label>
+                <input class="input" id="phone" name="phone" type="tel" inputmode="tel" autocomplete="tel" maxlength="20" required aria-describedby="phone-error">
+                <p class="field-error" id="phone-error"></p>
+              </div>
+
+              <div class="field" data-field="department">
+                <label for="department">Department or branch <span class="req" aria-hidden="true">*</span></label>
+                <input class="input" id="department" name="department" type="text" autocomplete="off" maxlength="80" required aria-describedby="department-error">
+                <p class="field-error" id="department-error"></p>
+              </div>
+
+              <div class="field" data-field="year">
+                <label for="year">Year of study <span class="req" aria-hidden="true">*</span></label>
+                <select class="input" id="year" name="year" required aria-describedby="year-error">
+                  <option value="">Select year</option>
+                  <option value="1st year">1st year</option>
+                  <option value="2nd year">2nd year</option>
+                  <option value="3rd year">3rd year</option>
+                  <option value="4th year">4th year</option>
+                  <option value="Postgraduate">Postgraduate</option>
+                  <option value="Other">Other</option>
+                </select>
+                <p class="field-error" id="year-error"></p>
+              </div>
+
+              <div class="field field--full" data-field="event">
+                <label for="event">Event <span class="req" aria-hidden="true">*</span></label>
+                <select class="input" id="event" name="event" required aria-describedby="event-error">
+                  <option value="">Select an event</option>
+                </select>
+                <p class="field-error" id="event-error"></p>
+              </div>
+
+              <div class="field field--full" data-field="teamName" id="team-field" hidden>
+                <label for="teamName">Team name <span class="req" id="team-marker" aria-hidden="true">*</span></label>
+                <input class="input" id="teamName" name="teamName" type="text" autocomplete="off" maxlength="60" aria-describedby="teamName-hint teamName-error">
+                <p class="field-hint" id="teamName-hint"></p>
+                <p class="field-error" id="teamName-error"></p>
+              </div>
+
+            </div>
+
+            <button class="btn btn-primary btn-block" type="submit" id="submit-btn">
+              <span class="btn-label">Submit registration</span>
+            </button>
+
+            <div class="status" id="form-status" role="status" aria-live="polite" tabindex="-1" hidden></div>
+          </form>
+
+          <p class="visually-hidden" id="event-selected-note" aria-live="polite"></p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== SCHEDULE ===================== -->
+    <section class="section" id="schedule" aria-labelledby="schedule-title">
+      <div class="container split split--sticky">
+        <div class="split-head">
+          <h2 class="section-title" id="schedule-title">Schedule</h2>
+          <p class="section-lead">The official timings will appear here once the organizers confirm them.</p>
+          <p class="notice" id="schedule-notice" hidden>
+            Placeholder content: the sessions below are sample entries, not confirmed event information.
+          </p>
+        </div>
+        <ol class="timeline" id="timeline">
+          <li class="timeline-item"><noscript>JavaScript is required to show the schedule.</noscript></li>
+        </ol>
+      </div>
+    </section>
+
+    <!-- ===================== FAQ ===================== -->
+    <section class="section section--mist" id="faq" aria-labelledby="faq-title">
+      <div class="container split split--sticky">
+        <div class="split-head">
+          <h2 class="section-title" id="faq-title">Frequently asked questions</h2>
+          <p class="section-lead">Some answers depend on details the organizers have not published yet. They are marked as to be confirmed.</p>
+        </div>
+
+        <div class="faq-list" id="faq-list">
+
+          <div class="faq-item">
+            <h3 class="faq-heading">
+              <button class="faq-trigger" type="button" id="faq-q1" aria-expanded="false" aria-controls="faq-a1">
+                <span>Who can participate?</span><span class="faq-icon" aria-hidden="true"></span>
+              </button>
+            </h3>
+            <div class="faq-panel" id="faq-a1" role="region" aria-labelledby="faq-q1">
+              <div class="faq-panel-inner">
+                <!-- PLACEHOLDER: replace with the official eligibility rules. -->
+                <p>Eligibility is listed in each event’s details. The final eligibility criteria are to be confirmed by the organizers.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="faq-item">
+            <h3 class="faq-heading">
+              <button class="faq-trigger" type="button" id="faq-q2" aria-expanded="false" aria-controls="faq-a2">
+                <span>How do I register?</span><span class="faq-icon" aria-hidden="true"></span>
+              </button>
+            </h3>
+            <div class="faq-panel" id="faq-a2" role="region" aria-labelledby="faq-q2">
+              <div class="faq-panel-inner">
+                <!-- PLACEHOLDER: add the registration deadline and any other official steps. -->
+                <p>Use the registration form on this page: choose your event, enter your details, and submit. Registration dates and deadlines are to be confirmed by the organizers.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="faq-item">
+            <h3 class="faq-heading">
+              <button class="faq-trigger" type="button" id="faq-q3" aria-expanded="false" aria-controls="faq-a3">
+                <span>Can I register for multiple events?</span><span class="faq-icon" aria-hidden="true"></span>
+              </button>
+            </h3>
+            <div class="faq-panel" id="faq-a3" role="region" aria-labelledby="faq-q3">
+              <div class="faq-panel-inner">
+                <!-- PLACEHOLDER: replace with the official policy on multiple registrations. -->
+                <p>This is to be confirmed by the organizers. Check each event’s details for any limits on who can join.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="faq-item">
+            <h3 class="faq-heading">
+              <button class="faq-trigger" type="button" id="faq-q4" aria-expanded="false" aria-controls="faq-a4">
+                <span>Are team registrations allowed?</span><span class="faq-icon" aria-hidden="true"></span>
+              </button>
+            </h3>
+            <div class="faq-panel" id="faq-a4" role="region" aria-labelledby="faq-q4">
+              <div class="faq-panel-inner">
+                <!-- PLACEHOLDER: confirm team rules per event once the official list is final. -->
+                <p>It depends on the event. Each event’s details list whether it is individual or team-based, and the team size. When an event needs a team name, the form asks for it.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="faq-item">
+            <h3 class="faq-heading">
+              <button class="faq-trigger" type="button" id="faq-q5" aria-expanded="false" aria-controls="faq-a5">
+                <span>Where can I find event rules?</span><span class="faq-icon" aria-hidden="true"></span>
+              </button>
+            </h3>
+            <div class="faq-panel" id="faq-a5" role="region" aria-labelledby="faq-q5">
+              <div class="faq-panel-inner">
+                <p>Select View Details on an event card to read its rules, format, eligibility, and team size. The official rules will replace the sample text once they are published.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="faq-item">
+            <h3 class="faq-heading">
+              <button class="faq-trigger" type="button" id="faq-q6" aria-expanded="false" aria-controls="faq-a6">
+                <span>How can I contact the organizers?</span><span class="faq-icon" aria-hidden="true"></span>
+              </button>
+            </h3>
+            <div class="faq-panel" id="faq-a6" role="region" aria-labelledby="faq-q6">
+              <div class="faq-panel-inner">
+                <p>Use the details in the <a href="#contact">Contact section</a>. The organizers’ email address will be added there when it is available.</p>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== CONTACT ===================== -->
+    <section class="section" id="contact" aria-labelledby="contact-title">
+      <div class="container split">
+        <div class="split-head">
+          <h2 class="section-title" id="contact-title">Contact</h2>
+          <p class="section-lead">Questions about events, rules, or registration? Reach the organizers using the details here.</p>
+        </div>
+
+        <div class="contact-card">
+          <dl class="contact-list">
+            <div>
+              <dt>Email</dt>
+              <!-- PLACEHOLDER: set contactEmail in script.js (SPARDA_CONFIG). -->
+              <dd id="contact-email">Contact email to be announced</dd>
+            </div>
+            <div>
+              <dt>Social media</dt>
+              <!-- PLACEHOLDER: add official links in script.js (SPARDA_CONFIG.socialLinks). -->
+              <dd id="contact-social">Official links will be added when available</dd>
+            </div>
+          </dl>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ===================== FOOTER ===================== -->
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <div class="footer-brand">
+        <p class="footer-name">SPARDA</p>
+        <p class="footer-sub">Organized by the IEEE Student Technical Community</p>
+      </div>
+      <nav class="footer-nav" aria-label="Footer">
+        <ul>
+          <li><a href="#home">Home</a></li>
+          <li><a href="#about">About</a></li>
+          <li><a href="#events">Events</a></li>
+          <li><a href="#register">Register</a></li>
+          <li><a href="#schedule">Schedule</a></li>
+          <li><a href="#faq">FAQ</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </nav>
+      <p class="footer-copy">&copy; <span id="footer-year">2026</span> SPARDA, IEEE Student Technical Community.</p>
+    </div>
+  </footer>
+
+  <!-- ===================== EVENT DETAILS DIALOG ===================== -->
+  <div class="modal" id="event-modal" hidden>
+    <div class="modal-panel" role="dialog" aria-modal="true" aria-labelledby="modal-title" tabindex="-1">
+      <div class="modal-header">
+        <div class="modal-heading">
+          <p class="modal-category" id="modal-category"></p>
+          <h2 class="modal-title" id="modal-title"></h2>
+        </div>
+        <button class="modal-close" type="button" data-modal-close aria-label="Close event details">
+          <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true" focusable="false"><path d="M5 5l14 14M19 5L5 19"/></svg>
+        </button>
+      </div>
+      <div class="modal-body" id="modal-body"></div>
+      <div class="modal-footer">
+        <button class="btn btn-ghost" type="button" data-modal-close>Close</button>
+        <button class="btn btn-primary" type="button" id="modal-register">Register for this event</button>
+      </div>
+    </div>
+  </div>
+<script>
+/* ==========================================================================
+   SPARDA website script (vanilla JavaScript, no dependencies)
+
+   EDIT THE THREE BLOCKS BELOW to update the site:
+     1. SPARDA_CONFIG  - event details, contact info, registration endpoint
+     2. EVENTS         - the single source of truth for event cards, dialogs, and the form
+     3. SCHEDULE       - the timeline
+
+   Everything marked PLACEHOLDER is sample data, not confirmed event information.
+   ========================================================================== */
+'use strict';
+
+/* --------------------------------------------------------------------------
+   1. CONFIGURATION
+   -------------------------------------------------------------------------- */
+const SPARDA_CONFIG = {
+  // PLACEHOLDER: leave empty until officially confirmed. Empty shows "To be announced".
+  eventDate: '',
+  venue: '',
+  registrationStatus: '',
+
+  // PLACEHOLDER: official contact email, for example 'sparda@example.org'.
+  contactEmail: '',
+
+  // PLACEHOLDER: official social links only, for example:
+  // [{ label: 'Instagram', url: 'https://www.instagram.com/your-official-account/' }]
+  socialLinks: [],
+
+  // REGISTRATION ENDPOINT (see README.md, "Connecting registration").
+  // Leave empty for demo mode: the form validates but sends nothing and says so.
+  // When set, the form POSTs JSON to this HTTPS URL. Never put API secrets here.
+  registrationEndpoint: '',
+  requestTimeoutMs: 15000,
+
+  // Set to false once real events and schedule replace the sample data.
+  showPlaceholderNotices: true
+};
+
+/* --------------------------------------------------------------------------
+   2. EVENTS (between one and five)
+   participation: 'individual' | 'team' | 'both'
+   visual: 'code' | 'circuit' | 'quiz'  (small built-in illustrations)
+   isSample: true shows a "Sample" badge. Remove it for official events.
+   -------------------------------------------------------------------------- */
+const EVENTS = [
+  {
+    id: 'sample-software',
+    isSample: true, // PLACEHOLDER
+    title: 'Sample Software Event',
+    category: 'Software',
+    visual: 'code',
+    summary: 'A sample problem-solving event focused on writing and testing code.',
+    description:
+      'Placeholder description. Participants solve programming problems within a set time. ' +
+      'Replace this text with the official event description.',
+    format: 'Format to be announced',
+    participation: 'individual',
+    teamSize: null,
+    eligibility: 'To be confirmed by the organizers',
+    rules: [
+      'Placeholder rule: official rules will be published by the organizers.',
+      'Placeholder rule: judging criteria will be listed here.'
+    ]
+  },
+  {
+    id: 'sample-hardware',
+    isSample: true, // PLACEHOLDER
+    title: 'Sample Hardware Event',
+    category: 'Hardware',
+    visual: 'circuit',
+    summary: 'A sample team event about designing and demonstrating a small electronics idea.',
+    description:
+      'Placeholder description. Teams plan and present a small hardware or circuit concept. ' +
+      'Replace this text with the official event description.',
+    format: 'Format to be announced',
+    participation: 'team',
+    teamSize: { min: 2, max: 3 },
+    eligibility: 'To be confirmed by the organizers',
+    rules: [
+      'Placeholder rule: official rules will be published by the organizers.',
+      'Placeholder rule: components and materials policy will be listed here.'
+    ]
+  },
+  {
+    id: 'sample-quiz',
+    isSample: true, // PLACEHOLDER
+    title: 'Sample Quiz Event',
+    category: 'Quiz',
+    visual: 'quiz',
+    summary: 'A sample technical quiz that can be taken alone or in a small team.',
+    description:
+      'Placeholder description. Participants answer technology questions across several rounds. ' +
+      'Replace this text with the official event description.',
+    format: 'Format to be announced',
+    participation: 'both',
+    teamSize: { min: 1, max: 2 },
+    eligibility: 'To be confirmed by the organizers',
+    rules: [
+      'Placeholder rule: official rules will be published by the organizers.',
+      'Placeholder rule: round structure and scoring will be listed here.'
+    ]
+  }
+];
+
+/* --------------------------------------------------------------------------
+   3. SCHEDULE
+   Leave `when` empty until the official time is confirmed.
+   -------------------------------------------------------------------------- */
+const SCHEDULE = [
+  { when: '', title: 'Check-in and welcome', text: 'Placeholder: arrival and opening remarks.', isPlaceholder: true },
+  { when: '', title: 'Event rounds', text: 'Placeholder: event sessions run according to the official plan.', isPlaceholder: true },
+  { when: '', title: 'Evaluation', text: 'Placeholder: judging and review of submissions.', isPlaceholder: true },
+  { when: '', title: 'Results and closing', text: 'Placeholder: announcements and closing remarks.', isPlaceholder: true }
+];
+
+/* ==========================================================================
+   Application code (no need to edit below for content changes)
+   ========================================================================== */
+
+const TBA_TEXT = 'To be announced';
+
+/* ---------- Small helpers ---------- */
+function $(selector, root) {
+  return (root || document).querySelector(selector);
+}
+
+function $$(selector, root) {
+  return Array.prototype.slice.call((root || document).querySelectorAll(selector));
+}
+
+function prefersReducedMotion() {
+  return Boolean(window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches);
+}
+
+/** Create an element safely (text is never parsed as HTML). */
+function h(tag, props) {
+  const node = document.createElement(tag);
+  if (props) {
+    Object.keys(props).forEach(function (key) {
+      const value = props[key];
+      if (value === null || value === undefined || value === false) return;
+      if (key === 'class') node.className = value;
+      else if (key === 'text') node.textContent = value;
+      else node.setAttribute(key, value === true ? '' : value);
+    });
+  }
+  const children = Array.prototype.slice.call(arguments, 2);
+  (function append(list) {
+    list.forEach(function (child) {
+      if (child === null || child === undefined || child === false) return;
+      if (Array.isArray(child)) append(child);
+      else node.appendChild(typeof child === 'object' ? child : document.createTextNode(String(child)));
+    });
+  })(children);
+  return node;
+}
+
+function findEvent(id) {
+  return EVENTS.filter(function (ev) { return ev.id === id; })[0] || null;
+}
+
+function participationLabel(ev) {
+  if (ev.participation === 'team') return 'Team';
+  if (ev.participation === 'both') return 'Individual or team';
+  return 'Individual';
+}
+
+function teamSizeText(ev) {
+  if (ev.participation === 'individual' || !ev.teamSize) return '1 participant';
+  const min = ev.teamSize.min;
+  const max = ev.teamSize.max;
+  return min === max ? max + ' members' : min + ' to ' + max + ' members';
+}
+
+/* ---------- Event illustrations (decorative, local, no image files) ---------- */
+const EVENT_VISUALS = {
+  code:
+    '<svg viewBox="0 0 320 140" fill="none" stroke="currentColor" stroke-width="6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">' +
+    '<polyline points="105,45 75,70 105,95"/><polyline points="215,45 245,70 215,95"/><line x1="178" y1="38" x2="142" y2="102"/>' +
+    '<g stroke-width="4" opacity=".45"><line x1="24" y1="26" x2="70" y2="26"/><line x1="250" y1="116" x2="296" y2="116"/></g></svg>',
+  circuit:
+    '<svg viewBox="0 0 320 140" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">' +
+    '<rect x="130" y="40" width="60" height="60" rx="8" fill="#fff"/><rect x="148" y="58" width="24" height="24" rx="4"/>' +
+    '<path d="M130 55H70V28H40M130 85H50M190 55H250V28H280M190 85H270V112H292M160 40V14M160 100V126"/>' +
+    '<g fill="#fff"><circle cx="40" cy="28" r="5"/><circle cx="50" cy="85" r="5"/><circle cx="280" cy="28" r="5"/><circle cx="292" cy="112" r="5"/></g></svg>',
+  quiz:
+    '<svg viewBox="0 0 320 140" fill="none" stroke="currentColor" stroke-width="4" stroke-linecap="round" aria-hidden="true" focusable="false">' +
+    '<circle cx="160" cy="70" r="36" fill="#fff"/>' +
+    '<path d="M147 62a13 13 0 1 1 20 11c-5 3-7 6-7 11" stroke-width="5"/><circle cx="160" cy="97" r="2.5" fill="currentColor"/>' +
+    '<g opacity=".5"><rect x="36" y="40" width="64" height="12" rx="6"/><rect x="36" y="64" width="48" height="12" rx="6"/><rect x="36" y="88" width="64" height="12" rx="6"/>' +
+    '<rect x="220" y="40" width="64" height="12" rx="6"/><rect x="236" y="64" width="48" height="12" rx="6"/><rect x="220" y="88" width="64" height="12" rx="6"/></g></svg>'
+};
+
+function createVisual(key) {
+  const wrapper = h('div', { class: 'event-visual', 'aria-hidden': 'true' });
+  wrapper.innerHTML = EVENT_VISUALS[key] || EVENT_VISUALS.circuit; // trusted constant strings only
+  return wrapper;
+}
+
+/* ==========================================================================
+   Page content from configuration
+   ========================================================================== */
+function initConfigContent() {
+  // Hero facts
+  $$('[data-config]').forEach(function (el) {
+    const value = String(SPARDA_CONFIG[el.getAttribute('data-config')] || '').trim();
+    el.textContent = value || TBA_TEXT;
+    const fact = el.closest('.fact');
+    if (fact) fact.classList.toggle('is-placeholder', !value);
+  });
+
+  // Placeholder notices
+  ['events-notice', 'schedule-notice'].forEach(function (id) {
+    const el = document.getElementById(id);
+    if (el) el.hidden = !SPARDA_CONFIG.showPlaceholderNotices;
+  });
+
+  const modeNote = document.getElementById('register-mode-note');
+  if (modeNote) modeNote.hidden = Boolean(String(SPARDA_CONFIG.registrationEndpoint).trim());
+
+  // Contact email
+  const emailEl = document.getElementById('contact-email');
+  const email = String(SPARDA_CONFIG.contactEmail || '').trim();
+  if (emailEl && email) {
+    emailEl.textContent = '';
+    emailEl.appendChild(h('a', { href: 'mailto:' + email, text: email }));
+  } else if (emailEl) {
+    emailEl.classList.add('is-placeholder');
+  }
+
+  // Social links (only official links that were supplied)
+  const socialEl = document.getElementById('contact-social');
+  const links = (SPARDA_CONFIG.socialLinks || []).filter(function (l) { return l && l.label && /^https?:\/\//i.test(l.url || ''); });
+  if (socialEl && links.length) {
+    socialEl.textContent = '';
+    socialEl.appendChild(
+      h('ul', null, links.map(function (l) {
+        return h('li', null, h('a', { href: l.url, target: '_blank', rel: 'noopener noreferrer', text: l.label }));
+      }))
+    );
+  } else if (socialEl) {
+    socialEl.classList.add('is-placeholder');
+  }
+
+  const year = document.getElementById('footer-year');
+  if (year) year.textContent = String(new Date().getFullYear());
+}
+
+/* ==========================================================================
+   Navigation (mobile menu + active link)
+   ========================================================================== */
+function initNav() {
+  const toggle = $('.nav-toggle');
+  const nav = document.getElementById('site-nav');
+  if (!toggle || !nav) return;
+
+  function setOpen(open, returnFocus) {
+    nav.classList.toggle('is-open', open);
+    toggle.setAttribute('aria-expanded', String(open));
+    if (!open && returnFocus) toggle.focus();
+  }
+
+  toggle.addEventListener('click', function () {
+    setOpen(toggle.getAttribute('aria-expanded') !== 'true', false);
+  });
+
+  // Close after a link is selected
+  nav.addEventListener('click', function (e) {
+    if (e.target.closest('a')) setOpen(false, false);
+  });
+
+  // Close with Escape
+  document.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape' && nav.classList.contains('is-open')) setOpen(false, true);
+  });
+
+  // Close when tapping outside
+  document.addEventListener('click', function (e) {
+    if (nav.classList.contains('is-open') && !nav.contains(e.target) && !toggle.contains(e.target)) {
+      setOpen(false, false);
+    }
+  });
+
+  // Reset when the layout switches to desktop
+  if (window.matchMedia) {
+    const desktop = window.matchMedia('(min-width: 60em)');
+    const onChange = function () { if (desktop.matches) setOpen(false, false); };
+    if (desktop.addEventListener) desktop.addEventListener('change', onChange);
+    else if (desktop.addListener) desktop.addListener(onChange);
+  }
+
+  // Highlight the link for the section in view
+  const links = $$('.nav-link', nav);
+  if (!('IntersectionObserver' in window) || !links.length) return;
+  const byId = {};
+  links.forEach(function (link) { byId[link.getAttribute('href').slice(1)] = link; });
+  const observer = new IntersectionObserver(function (entries) {
+    entries.forEach(function (entry) {
+      if (!entry.isIntersecting || !byId[entry.target.id]) return;
+      links.forEach(function (l) { l.removeAttribute('aria-current'); });
+      byId[entry.target.id].setAttribute('aria-current', 'location');
+    });
+  }, { rootMargin: '-45% 0px -50% 0px' });
+  Object.keys(byId).forEach(function (id) {
+    const section = document.getElementById(id);
+    if (section) observer.observe(section);
+  });
+}
+
+/* ==========================================================================
+   Events: cards rendered from EVENTS
+   ========================================================================== */
+function renderEvents() {
+  const grid = document.getElementById('event-grid');
+  if (!grid) return;
+  grid.textContent = '';
+
+  if (!EVENTS.length) {
+    grid.appendChild(h('li', { class: 'event-empty', text: 'Events will be announced soon.' }));
+    return;
+  }
+
+  EVENTS.forEach(function (ev) {
+    const card = h('article', { class: 'event-card' },
+      createVisual(ev.visual),
+      h('div', { class: 'event-body' },
+        h('div', { class: 'event-tags' },
+          h('span', { class: 'tag', text: ev.category }),
+          ev.isSample ? h('span', { class: 'tag tag--sample', text: 'Sample' }) : null
+        ),
+        h('h3', { class: 'event-title', text: ev.title }),
+        h('p', { class: 'event-summary', text: ev.summary }),
+        h('dl', { class: 'event-meta' },
+          metaRow('Format', ev.format),
+          metaRow('Participation', participationLabel(ev) + (ev.participation === 'individual' ? '' : ', ' + teamSizeText(ev))),
+          metaRow('Eligibility', ev.eligibility)
+        )
+      ),
+      h('div', { class: 'event-actions' },
+        h('button', { class: 'btn btn-secondary', type: 'button', 'data-action': 'details', 'data-event-id': ev.id, 'aria-label': 'View details: ' + ev.title, text: 'View Details' }),
+        h('button', { class: 'btn btn-primary', type: 'button', 'data-action': 'register', 'data-event-id': ev.id, 'aria-label': 'Register for ' + ev.title, text: 'Register' })
+      )
+    );
+    grid.appendChild(h('li', null, card));
+  });
+
+  grid.addEventListener('click', function (e) {
+    const button = e.target.closest('[data-action]');
+    if (!button) return;
+    const ev = findEvent(button.getAttribute('data-event-id'));
+    if (!ev) return;
+    if (button.getAttribute('data-action') === 'details') Modal.open(ev, button);
+    else startRegistration(ev.id);
+  });
+}
+
+function metaRow(label, value) {
+  if (!value) return null;
+  return h('div', null, h('dt', { text: label }), h('dd', { text: value }));
+}
+
+/* ==========================================================================
+   Event details dialog (custom, accessible)
+   ========================================================================== */
+const Modal = (function () {
+  let root, panel, body, titleEl, categoryEl, registerBtn;
+  let currentEvent = null;
+  let lastFocused = null;
+  let pressStartedOnBackdrop = false;
+
+  const FOCUSABLE = 'a[href], button:not([disabled]), input:not([disabled]), select:not([disabled]), textarea:not([disabled]), [tabindex]:not([tabindex="-1"])';
+
+  function focusables() {
+    return $$(FOCUSABLE, panel).filter(function (el) { return el.getClientRects().length > 0; });
+  }
+
+  function fill(ev) {
+    categoryEl.textContent = ev.category;
+    titleEl.textContent = ev.title;
+    const children = [
+      ev.isSample ? h('p', { class: 'notice', text: 'Sample content. The organizers will replace it with the official details.' }) : null,
+      h('p', { class: 'modal-description', text: ev.description }),
+      h('dl', { class: 'detail-list' },
+        detailRow('Format', ev.format),
+        detailRow('Participation', participationLabel(ev)),
+        detailRow('Team size', teamSizeText(ev)),
+        detailRow('Eligibility', ev.eligibility)
+      )
+    ];
+    if (ev.rules && ev.rules.length) {
+      children.push(h('h3', { text: 'Rules' }));
+      children.push(h('ul', { class: 'rule-list' }, ev.rules.map(function (r) { return h('li', { text: r }); })));
+    }
+    if (ev.notes && ev.notes.length) {
+      children.push(h('h3', { text: 'Notes' }));
+      children.push(h('ul', { class: 'rule-list' }, ev.notes.map(function (n) { return h('li', { text: n }); })));
+    }
+    body.textContent = '';
+    children.forEach(function (c) { if (c) body.appendChild(c); });
+    body.scrollTop = 0;
+  }
+
+  function detailRow(label, value) {
+    if (!value) return null;
+    return h('div', { class: 'detail-row' }, h('dt', { text: label }), h('dd', { text: value }));
+  }
+
+  function open(ev, trigger) {
+    currentEvent = ev;
+    lastFocused = trigger || document.activeElement;
+    fill(ev);
+    root.hidden = false;
+    document.documentElement.classList.add('no-scroll');
+    panel.focus();
+  }
+
+  function close(restoreFocus) {
+    if (root.hidden) return;
+    root.hidden = true;
+    document.documentElement.classList.remove('no-scroll');
+    currentEvent = null;
+    if (restoreFocus !== false && lastFocused && document.contains(lastFocused)) lastFocused.focus();
+  }
+
+  function onKeydown(e) {
+    if (root.hidden) return;
+    if (e.key === 'Escape') {
+      e.preventDefault();
+      close(true);
+      return;
+    }
+    if (e.key !== 'Tab') return;
+    const items = focusables();
+    if (!items.length) {
+      e.preventDefault();
+      panel.focus();
+      return;
+    }
+    const first = items[0];
+    const last = items[items.length - 1];
+    const active = document.activeElement;
+    if (!panel.contains(active)) {
+      e.preventDefault();
+      first.focus();
+    } else if (e.shiftKey && (active === first || active === panel)) {
+      e.preventDefault();
+      last.focus();
+    } else if (!e.shiftKey && active === last) {
+      e.preventDefault();
+      first.focus();
+    }
+  }
+
+  function init() {
+    root = document.getElementById('event-modal');
+    if (!root) return;
+    panel = $('.modal-panel', root);
+    body = document.getElementById('modal-body');
+    titleEl = document.getElementById('modal-title');
+    categoryEl = document.getElementById('modal-category');
+    registerBtn = document.getElementById('modal-register');
+
+    $$('[data-modal-close]', root).forEach(function (btn) {
+      btn.addEventListener('click', function () { close(true); });
+    });
+
+    // Close on backdrop click (only if the press also started on the backdrop)
+    root.addEventListener('pointerdown', function (e) { pressStartedOnBackdrop = e.target === root; });
+    root.addEventListener('click', function (e) {
+      if (e.target === root && pressStartedOnBackdrop) close(true);
+      pressStartedOnBackdrop = false;
+    });
+
+    registerBtn.addEventListener('click', function () {
+      if (currentEvent) startRegistration(currentEvent.id);
+    });
+
+    document.addEventListener('keydown', onKeydown);
+  }
+
+  return { init: init, open: open, close: close };
+})();
+
+/* ==========================================================================
+   Registration form
+   ========================================================================== */
+const formState = { submitting: false };
+let formEls = null;
+
+const EMAIL_PATTERN = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
+const NAME_PATTERN = /^[A-Za-z\u00C0-\u024F\u0900-\u0DFF][A-Za-z\u00C0-\u024F\u0900-\u0DFF\s.'\u2019-]*$/;
+
+const VALIDATORS = {
+  fullName: function (v) {
+    if (!v) return 'Enter your full name.';
+    if (v.length < 2) return 'Enter at least 2 characters.';
+    if (!NAME_PATTERN.test(v)) return 'Use letters, spaces, apostrophes, hyphens, or full stops only.';
+    return '';
+  },
+  college: function (v) {
+    if (!v) return 'Enter your college or institution.';
+    if (v.length < 2) return 'Enter at least 2 characters.';
+    return '';
+  },
+  email: function (v) {
+    if (!v) return 'Enter your email address.';
+    if (!EMAIL_PATTERN.test(v)) return 'Enter a valid email address, such as name@example.com.';
+    return '';
+  },
+  phone: function (v) {
+    if (!v) return 'Enter your phone number.';
+    if (!/^\+?[\d\s().-]+$/.test(v)) return 'Use digits only, with an optional + at the start.';
+    const digits = v.replace(/\D/g, '');
+    if (digits.length < 10 || digits.length > 15) return 'Enter a phone number with 10 to 15 digits.';
+    return '';
+  },
+  department: function (v) {
+    if (!v) return 'Enter your department or branch.';
+    if (v.length < 2) return 'Enter at least 2 characters.';
+    return '';
+  },
+  year: function (v) {
+    return v ? '' : 'Select your year of study.';
+  },
+  event: function (v) {
+    if (!v) return 'Select an event.';
+    if (!findEvent(v)) return 'Select an event from the list.';
+    return '';
+  },
+  teamName: function (v) {
+    const ev = findEvent(formEls.event.value);
+    if (ev && ev.participation === 'team' && !v) return 'Enter your team name for this event.';
+    if (v.length > 60) return 'Team name must be 60 characters or fewer.';
+    return '';
+  }
+};
+
+const FIELD_ORDER = ['fullName', 'college', 'email', 'phone', 'department', 'year', 'event', 'teamName'];
+
+function fieldValue(name) {
+  return String(formEls[name].value || '').trim();
+}
+
+function setFieldError(name, message) {
+  const input = formEls[name];
+  const error = document.getElementById(name + '-error');
+  input.setAttribute('aria-invalid', message ? 'true' : 'false');
+  if (!message) input.removeAttribute('aria-invalid');
+  if (error) error.textContent = message;
+}
+
+function validateField(name) {
+  if (name === 'teamName' && formEls.teamField.hidden) {
+    setFieldError(name, '');
+    return '';
+  }
+  const message = VALIDATORS[name](fieldValue(name));
+  setFieldError(name, message);
+  return message;
+}
+
+/** Validate every visible field. Returns the first invalid input, or null. */
+function validateAll() {
+  let firstInvalid = null;
+  FIELD_ORDER.forEach(function (name) {
+    if (validateField(name) && !firstInvalid) firstInvalid = formEls[name];
+  });
+  return firstInvalid;
+}
+
+function syncTeamField() {
+  const ev = findEvent(formEls.event.value);
+  const field = formEls.teamField;
+  const input = formEls.teamName;
+  const hint = document.getElementById('teamName-hint');
+  const marker = document.getElementById('team-marker');
+
+  if (!ev || ev.participation === 'individual') {
+    field.hidden = true;
+    input.required = false;
+    input.value = '';
+    setFieldError('teamName', '');
+    return;
+  }
+
+  const required = ev.participation === 'team';
+  field.hidden = false;
+  input.required = required;
+  marker.textContent = required ? '*' : '(optional)';
+  marker.className = required ? 'req' : 'optional';
+  if (required) marker.setAttribute('aria-hidden', 'true');
+  else marker.removeAttribute('aria-hidden');
+  hint.textContent = required
+    ? 'Team size for this event: ' + teamSizeText(ev) + '.'
+    : 'Enter a team name only if you are registering as a team. Team size: ' + teamSizeText(ev) + '.';
+}
+
+function showStatus(type, message) {
+  const el = formEls.status;
+  el.className = 'status status--' + type;
+  el.textContent = message;
+  el.hidden = false;
+}
+
+function clearStatus() {
+  formEls.status.hidden = true;
+  formEls.status.textContent = '';
+  formEls.status.className = 'status';
+}
+
+function setSubmitting(isSubmitting) {
+  formState.submitting = isSubmitting;
+  const button = formEls.submit;
+  button.disabled = isSubmitting;
+  button.setAttribute('aria-busy', String(isSubmitting));
+  formEls.form.setAttribute('aria-busy', String(isSubmitting));
+  $('.btn-label', button).textContent = isSubmitting ? 'Submitting' : 'Submit registration';
+}
+
+function buildPayload() {
+  const ev = findEvent(formEls.event.value);
+  return {
+    fullName: fieldValue('fullName'),
+    college: fieldValue('college'),
+    email: fieldValue('email'),
+    phone: fieldValue('phone'),
+    department: fieldValue('department'),
+    year: fieldValue('year'),
+    eventId: ev ? ev.id : '',
+    eventTitle: ev ? ev.title : '',
+    teamName: formEls.teamField.hidden ? '' : fieldValue('teamName'),
+    submittedAt: new Date().toISOString()
+  };
+}
+
+/**
+ * Sends the registration. Replace or extend this function when a real backend exists.
+ *
+ * Returns { status: 'success' } when the server confirmed the registration,
+ * or { status: 'demo' } when no endpoint is configured (nothing was sent).
+ * Throws on network errors, timeouts, and non-2xx responses.
+ *
+ * Never put API secrets here: anything in this file is visible to every visitor.
+ * Keep secrets on the server that receives this request.
+ */
+async function submitRegistration(payload) {
+  const endpoint = String(SPARDA_CONFIG.registrationEndpoint || '').trim();
+
+  if (!endpoint) {
+    // DEMO MODE: no server is configured, so nothing is sent or stored.
+    await new Promise(function (resolve) { setTimeout(resolve, 600); });
+    return { status: 'demo' };
+  }
+
+  const controller = typeof AbortController === 'function' ? new AbortController() : null;
+  const timer = controller ? setTimeout(function () { controller.abort(); }, SPARDA_CONFIG.requestTimeoutMs) : null;
+  try {
+    const response = await fetch(endpoint, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
+      body: JSON.stringify(payload),
+      signal: controller ? controller.signal : undefined
+    });
+    if (!response.ok) throw new Error('Server responded with status ' + response.status);
+    return { status: 'success' };
+  } finally {
+    if (timer) clearTimeout(timer);
+  }
+}
+
+async function handleSubmit(e) {
+  e.preventDefault();
+  if (formState.submitting) return;
+  clearStatus();
+
+  const firstInvalid = validateAll();
+  if (firstInvalid) {
+    showStatus('error', 'Some fields need your attention. Fix the highlighted fields and submit again.');
+    firstInvalid.focus();
+    return;
+  }
+
+  setSubmitting(true);
+  const payload = buildPayload();
+  let result = null;
+  let failed = false;
+  let timedOut = false;
+
+  try {
+    result = await submitRegistration(payload);
+  } catch (err) {
+    failed = true;
+    timedOut = Boolean(err && err.name === 'AbortError');
+  }
+  setSubmitting(false);
+
+  if (failed) {
+    showStatus('error', timedOut
+      ? 'The request took too long. Check your connection and try again. Your details are still in the form.'
+      : 'We could not submit your registration. Check your connection and try again. Your details are still in the form.');
+  } else if (result.status === 'success') {
+    showStatus('success', 'Thank you, ' + payload.fullName + '. Your registration for ' + payload.eventTitle + ' was submitted.');
+    formEls.form.reset();
+    syncTeamField();
+    FIELD_ORDER.forEach(function (name) { setFieldError(name, ''); });
+  } else {
+    showStatus('demo', 'Demo mode: your details are valid, but this site is not connected to a registration system yet. Nothing was sent or saved, and you are not registered. Please check with the organizers for how to register.');
+  }
+  formEls.status.focus();
+}
+
+function initForm() {
+  const form = document.getElementById('registration-form');
+  if (!form) return;
+
+  formEls = {
+    form: form,
+    fullName: document.getElementById('fullName'),
+    college: document.getElementById('college'),
+    email: document.getElementById('email'),
+    phone: document.getElementById('phone'),
+    department: document.getElementById('department'),
+    year: document.getElementById('year'),
+    event: document.getElementById('event'),
+    teamName: document.getElementById('teamName'),
+    teamField: document.getElementById('team-field'),
+    submit: document.getElementById('submit-btn'),
+    status: document.getElementById('form-status')
+  };
+
+  // Populate the event list from the single source of truth
+  EVENTS.forEach(function (ev) {
+    formEls.event.appendChild(h('option', { value: ev.id, text: ev.title }));
+  });
+
+  // Validate a field when the person leaves it, and re-check as they correct an error
+  FIELD_ORDER.forEach(function (name) {
+    const input = formEls[name];
+    input.addEventListener('blur', function () { if (fieldValue(name) || input.getAttribute('aria-invalid')) validateField(name); });
+    const reCheck = function () { if (input.getAttribute('aria-invalid') === 'true') validateField(name); };
+    input.addEventListener('input', reCheck);
+    input.addEventListener('change', reCheck);
+  });
+
+  formEls.event.addEventListener('change', function () {
+    syncTeamField();
+    if (formEls.teamName.getAttribute('aria-invalid') === 'true') validateField('teamName');
+  });
+
+  form.addEventListener('submit', handleSubmit);
+  syncTeamField();
+}
+
+/** Open the registration form with an event preselected (used by cards and the dialog). */
+function startRegistration(eventId) {
+  Modal.close(false);
+  const ev = findEvent(eventId);
+  const section = document.getElementById('register');
+  if (!ev || !section || !formEls) return;
+
+  formEls.event.value = ev.id;
+  setFieldError('event', '');
+  syncTeamField();
+  clearStatus();
+
+  const note = document.getElementById('event-selected-note');
+  if (note) note.textContent = 'Event selected: ' + ev.title + '.';
+
+  section.scrollIntoView({ behavior: prefersReducedMotion() ? 'auto' : 'smooth', block: 'start' });
+
+  // Move focus to the form heading (does not pop up the on-screen keyboard)
+  const heading = document.getElementById('form-heading');
+  if (heading) setTimeout(function () { heading.focus({ preventScroll: true }); }, prefersReducedMotion() ? 0 : 500);
+}
+
+/* ==========================================================================
+   Schedule
+   ========================================================================== */
+function renderSchedule() {
+  const list = document.getElementById('timeline');
+  if (!list) return;
+  list.textContent = '';
+  if (!SCHEDULE.length) {
+    list.appendChild(h('li', { class: 'timeline-item', text: 'The schedule will be announced soon.' }));
+    return;
+  }
+  SCHEDULE.forEach(function (item) {
+    list.appendChild(
+      h('li', { class: 'timeline-item' },
+        h('p', { class: 'timeline-time', text: item.when || 'Time to be announced' }),
+        h('h3', { class: 'timeline-title', text: item.title }),
+        item.text ? h('p', { class: 'timeline-text', text: item.text }) : null,
+        item.isPlaceholder ? h('span', { class: 'tag tag--sample', text: 'Placeholder' }) : null
+      )
+    );
+  });
+}
+
+/* ==========================================================================
+   FAQ accordion
+   ========================================================================== */
+function initFaq() {
+  const triggers = $$('.faq-trigger');
+  if (!triggers.length) return;
+
+  function setExpanded(trigger, expanded) {
+    trigger.setAttribute('aria-expanded', String(expanded));
+    const panel = document.getElementById(trigger.getAttribute('aria-controls'));
+    if (panel) panel.classList.toggle('is-open', expanded);
+  }
+
+  triggers.forEach(function (trigger, index) {
+    trigger.addEventListener('click', function () {
+      setExpanded(trigger, trigger.getAttribute('aria-expanded') !== 'true');
+    });
+    trigger.addEventListener('keydown', function (e) {
+      let target = null;
+      if (e.key === 'ArrowDown') target = triggers[(index + 1) % triggers.length];
+      else if (e.key === 'ArrowUp') target = triggers[(index - 1 + triggers.length) % triggers.length];
+      else if (e.key === 'Home') target = triggers[0];
+      else if (e.key === 'End') target = triggers[triggers.length - 1];
+      if (target) {
+        e.preventDefault();
+        target.focus();
+      }
+    });
+  });
+}
+
+/* ==========================================================================
+   Start
+   ========================================================================== */
+function init() {
+  initConfigContent();
+  initNav();
+  renderEvents();
+  renderSchedule();
+  initForm();
+  Modal.init();
+  initFaq();
+}
+
+if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', init);
+else init();
+
+</script>
+</body>
+</html>
